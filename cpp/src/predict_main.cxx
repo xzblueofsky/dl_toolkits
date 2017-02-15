@@ -7,7 +7,7 @@
 #include <sys/types.h>
 #include <dirent.h>
 
-#include "classification_caffe.h"
+#include "lib/classification_caffe.h"
 
 using namespace std;
 using namespace cv;

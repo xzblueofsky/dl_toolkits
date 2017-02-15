@@ -41,7 +41,17 @@ include_directories(system Boost_INCLUDE_DIRS)
 list(APPEND LINKER_LIBS ${Boost_LIBRARIES})
   
 # 加入你自己编译成可执行文件的名称以及对应的代码  
-file(GLOB SOURCES "src/*.cpp")
-add_executable(predict ${SOURCES})  
-# 链接时候的库文件  
-target_link_libraries(predict ${LINKER_LIBS})  
+#FILE(GLOB_RECURSE TEST_SRC_FILES *.cpp *.cc *.c)
+FILE(GLOB LIB_SRC_FILES "src/lib/*.cpp")
+FILE(GLOB LIB_HEADER_FILES "src/lib/*.h")
+
+add_library(predict_lib ${LIB_SRC_FILES} )  
+#target_link_libraries(predict ${LINKER_LIBS})  
+FILE(GLOB MAIN_FILES "src/*.cxx")
+foreach(test_src ${MAIN_FILES})
+    GET_FILENAME_COMPONENT(ONE_TEST_TARGET ${test_src} NAME_WE)
+    add_executable(${ONE_TEST_TARGET} ${test_src})  
+    # 链接时候的库文件  
+    target_link_libraries(${ONE_TEST_TARGET} predict_lib ${LINKER_LIBS})  
+endforeach(test_src)
+

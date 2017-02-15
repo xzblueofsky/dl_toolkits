@@ -1,5 +1,5 @@
 Usage: 
-./predict <deploy_file> <model_file> <image_dir_root> <output_loc>
+./predict_main <deploy_file> <model_file> <image_dir_root> <output_loc>
 
 Warning:
 <image_dir_root> should end with '/'
