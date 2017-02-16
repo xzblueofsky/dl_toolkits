@@ -23,12 +23,23 @@ void ParseTag(const string& fn, vector<Record> &records) {
         stringstream ss;
         ss<<line;
         ss>>record.first;
-        ss>>record.second; 
+        ss>>record.second;
         records.push_back(record);
         //printf("first = %s, second = %f\n", record.first.c_str(), record.second);
-    } 
+    }
     ifs.close();
-} 
+}
+
+void write_with_trunc(ofstream &ofs, float value) {
+    if (value < 0) {
+        ofs<<0<<"\t";
+    } else if (value > 1) {
+        ofs<<1<<"\t";
+    } else {
+        ofs<<value<<"\t";
+    }
+}
+
 
 int main(int argc, char* argv[]) {
     if (argc<5) {
@@ -73,7 +84,8 @@ int main(int argc, char* argv[]) {
         for (int i=0; i<batch_size; i++) {
             ofs<<batch_records[i].first<<"\t";
             for (vector< vector<float> >::size_type j=0; j<batch_preds[i].size(); j++) {
-                ofs<<batch_preds[i][j]<<"\t";
+                write_with_trunc(ofs, batch_preds[i][j]);
+                //ofs<<batch_preds[i][j]<<"\t";
             }
             ofs<<batch_records[i].second;
             ofs<<endl;
@@ -81,7 +93,7 @@ int main(int argc, char* argv[]) {
 
     }
 
-    // operation of tail of images 
+    // operation of tail of images
     vector<Mat> batch_inputs;
     vector<Record> batch_records;
     vector< vector<float> > batch_preds;
@@ -94,12 +106,13 @@ int main(int argc, char* argv[]) {
     for (vector<string>::size_type i=0; i<batch_records.size(); i++) {
         ofs<<batch_records[i].first<<"\t";
         for (vector< vector<float> >::size_type j=0; j<batch_preds[i].size(); j++) {
-            ofs<<batch_preds[i][j]<<"\t";
+            write_with_trunc(ofs, batch_preds[i][j]);
+            //ofs<<batch_preds[i][j]<<"\t";
         }
         ofs<<batch_records[i].second;
         ofs<<endl;
     }
-    
+
     ofs.close();
     delete classifier_;
 

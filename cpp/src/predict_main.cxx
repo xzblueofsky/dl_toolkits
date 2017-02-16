@@ -35,6 +35,17 @@ void EnumPathFiles(const std::string &path, const std::string &ext,
     ::closedir(dir);
 }
 
+void write_with_trunc(ofstream &ofs, float value) {
+    DEBUG_PRINT();
+    if (value < 0) {
+       ofs<<0<<"\t";
+    } else if (value > 1) {
+       ofs<<1<<"\t";
+    } else {
+       ofs<<value<<"\t";
+    }
+}
+
 int main(int argc, char* argv[]) {
     if (argc<5) {
         printf("Usage: ./bin <deploy_file> <model_file> <img_root_dir> <result_loc>\n");
@@ -80,7 +91,8 @@ int main(int argc, char* argv[]) {
         for (int i=0; i<batch_size; i++) {
             ofs<<batch_img_fns[i]<<"\t";
             for (vector< vector<float> >::size_type j=0; j<batch_preds[i].size(); j++) {
-                ofs<<batch_preds[i][j]<<"\t";
+                write_with_trunc(ofs, batch_preds[i][j]);
+                //ofs<<batch_preds[i][j]<<"\t";
             }
             ofs<<endl;
         }
@@ -100,7 +112,8 @@ int main(int argc, char* argv[]) {
     for (vector<string>::size_type i=0; i<batch_img_fns.size(); i++) {
         ofs<<batch_img_fns[i]<<"\t";
         for (vector< vector<float> >::size_type j=0; j<batch_preds[i].size(); j++) {
-            ofs<<batch_preds[i][j]<<"\t";
+            write_with_trunc(ofs, batch_preds[i][j]);
+            //ofs<<batch_preds[i][j]<<"\t";
         }
         ofs<<endl;
     }
