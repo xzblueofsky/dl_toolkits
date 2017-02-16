@@ -18,13 +18,14 @@ void ParseTag(const string& fn, vector<Record> &records) {
     ifstream ifs(fn.c_str(), ios::in);
     string line;
     while( getline(ifs, line) ) {
-        //cout<<line<<endl;
+        cout<<line<<endl;
         Record record;
         stringstream ss;
         ss<<line;
-        ss>>record.second;
-        ss>>record.first; 
-        //printf("first = %s, second = %f\n", record.first.c_str(), record.second);
+        ss>>record.first;
+        ss>>record.second; 
+        records.push_back(record);
+        printf("first = %s, second = %f\n", record.first.c_str(), record.second);
     } 
     ifs.close();
 } 
@@ -41,35 +42,32 @@ int main(int argc, char* argv[]) {
     string model_loc = argv[2];
     string ground_truth_loc = argv[3];
     string result_loc = argv[4];
-    vector<string> pathes;
+
     vector<Record> records;
     ParseTag(ground_truth_loc, records);
 
-    typedef vector<string>::size_type size_type;
-    cout<<pathes.size()<<endl;
-    for (size_type i=0; i<pathes.size(); i++) {
-        cout<<pathes[i]<<endl;
-    }
-
     int batch_size = CaffeClassifier::kBatchSize;
-    int batch_num = pathes.size()/batch_size;
+    int batch_num = records.size()/batch_size;
     float avg_time = 0;
 
-
+    DEBUG_PRINT();
     CaffeClassifier *classifier_ = new CaffeClassifier(argv[1], argv[2]);
+    DEBUG_PRINT();
     // batch operation of images
     for ( int batch_count = 0; batch_count<batch_num; batch_count++) {
         vector<Mat> batch_inputs;
         vector<string> batch_img_fns;
         vector< vector<float> > batch_preds;
         for ( int k=batch_count*batch_size; k<(batch_count+1)*batch_size; k++ ) {
-            Mat img = imread(pathes[k]);
+            Mat img = imread(records[k].first);
             batch_inputs.push_back(img);
-            batch_img_fns.push_back(pathes[k]);
+            batch_img_fns.push_back(records[k].first);
         }
 
         unsigned long long begin = GetCurrentMicroSecond();
+        DEBUG_PRINT();
         classifier_->Predict(batch_inputs, batch_preds);
+        DEBUG_PRINT();
         unsigned long long end = GetCurrentMicroSecond();
         printf("batch time %lldms\n", end - begin);
         avg_time += end-begin;
@@ -88,9 +86,9 @@ int main(int argc, char* argv[]) {
     vector<Mat> batch_inputs;
     vector<string> batch_img_fns;
     vector< vector<float> > batch_preds;
-    for ( vector<string>::size_type i = batch_size*batch_num; i<pathes.size(); i++) {
-        Mat img = imread(pathes[i]);
-        batch_img_fns.push_back(pathes[i]);
+    for ( vector<string>::size_type i = batch_size*batch_num; i<records.size(); i++) {
+        Mat img = imread(records[i].first);
+        batch_img_fns.push_back(records[i].first);
         batch_inputs.push_back(img);
     }
     classifier_->Predict(batch_inputs, batch_preds);
