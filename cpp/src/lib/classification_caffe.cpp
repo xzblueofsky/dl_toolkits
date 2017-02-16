@@ -35,8 +35,7 @@ CaffeClassifier::CaffeClassifier(const string& deploy_file,
 	num_channels_ = input_layer_->channels();
 	CHECK(num_channels_ == 3) << "Input layer should have 3 channels.";
 	input_geometry_ = Size(input_layer_->width(), input_layer_->height());
-	input_geometry_.height = input_height;
-	input_geometry_.width = input_width;
+    printf("input_geometry_.height = %d, input_geometry_.width = %d\n", input_geometry_.height, input_geometry_.width);
 	num_channels_ = 3;
 	input_layer_->Reshape(kBatchSize, num_channels_, input_geometry_.height,
 			input_geometry_.width);
