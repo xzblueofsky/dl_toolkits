@@ -23,14 +23,14 @@ def get_statics(records, thresh):
     accurancy = (true_pos + true_neg) / (true_pos + true_neg + false_pos + false_neg);
     precision = true_pos / (true_pos + false_pos)
     recall = true_pos / (true_pos + false_neg)
-    """
+    #"""
     print '---thresh = {}'.format(thresh)
     print 'accurancy = {}'.format(accurancy)
     print 'precision = {}'.format(precision)
     print 'recall = {}'.format(recall)
     sum_num = true_pos + true_neg + false_pos + false_neg
     print 'sum = {}'.format(sum_num)
-    """
+    #"""
     return (accurancy, precision, recall)
 
 if __name__=='__main__':
@@ -55,5 +55,10 @@ if __name__=='__main__':
         precision_list.append(precision)
         recall_list.append(recall)
     
-    plt.plot(precision_list, recall_list)
+    plt.plot(recall_list, precision_list)
+    plt.xlabel('Recall')
+    plt.ylabel('Precision')
+    plt.plot(recall_list[50], precision_list[50], 'ro')
+    plt.xlim([0,1])
+    plt.ylim([0,1])
     plt.show()
