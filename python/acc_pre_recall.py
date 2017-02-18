@@ -50,7 +50,7 @@ def get_result_list(records):
 
 if __name__=='__main__':
     if len(sys.argv)!=2:
-        print 'Usage: ./accurancy.py <path/to/result>'
+        print 'Usage: ./acc_pre_recall.py <path/to/result>'
         exit(1)
 
     result_loc = sys.argv[1]

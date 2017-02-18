@@ -1,4 +1,4 @@
-Usage: ./accurancy.py <path/to/result>
+Usage: ./acc_pre_recall.py <path/to/result>
 
 Warning: 
 This is is flexiable to adapt different result file. 
