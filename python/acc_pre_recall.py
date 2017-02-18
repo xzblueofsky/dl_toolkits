@@ -19,10 +19,11 @@ def get_statics(records, thresh):
             false_neg += 1
         elif predict>thresh and groundtruth ==0:
             false_pos += 1
-
-    accurancy = (true_pos + true_neg) / (true_pos + true_neg + false_pos + false_neg);
-    precision = true_pos / (true_pos + false_pos)
-    recall = true_pos / (true_pos + false_neg)
+    
+    episilon = 1e-6
+    accurancy = (true_pos + true_neg) / (true_pos + true_neg + false_pos + false_neg + episilon);
+    precision = true_pos / (true_pos + false_pos + episilon)
+    recall = true_pos / (true_pos + false_neg + episilon)
     #"""
     print '---thresh = {}'.format(thresh)
     print 'accurancy = {}'.format(accurancy)
@@ -33,17 +34,7 @@ def get_statics(records, thresh):
     #"""
     return (accurancy, precision, recall)
 
-if __name__=='__main__':
-    if len(sys.argv)!=2:
-        print 'Usage: ./accurancy.py <path/to/result>'
-        exit(1)
-
-    result_loc = sys.argv[1]
-    result = open(result_loc)
-    records = result.readlines()
-
-    true_pos = false_pos = true_neg = false_neg = 0.0
-
+def get_result_list(records):
     threshes = [x *0.01 for x in range(1,101)]
     accurancy_list = list()
     precision_list = list()
@@ -54,6 +45,19 @@ if __name__=='__main__':
         accurancy_list.append(accurancy)
         precision_list.append(precision)
         recall_list.append(recall)
+
+    return (accurancy_list, precision_list, recall_list)
+
+if __name__=='__main__':
+    if len(sys.argv)!=2:
+        print 'Usage: ./accurancy.py <path/to/result>'
+        exit(1)
+
+    result_loc = sys.argv[1]
+    result = open(result_loc)
+    records = result.readlines()
+    
+    (accurancy_list, precision_list, recall_list) = get_result_list(records)
     
     plt.plot(recall_list, precision_list)
     plt.xlabel('Recall')

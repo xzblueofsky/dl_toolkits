@@ -2,7 +2,7 @@
 
 import sys
 import os
-import accurancy #my python file
+import acc_pre_recall #my python file
 import subprocess
 
 def get_model_path_list(model_dir):
