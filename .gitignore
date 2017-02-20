@@ -2,3 +2,4 @@ temp_result
 cpp/build
 *.swp
 *pyc
+*~
