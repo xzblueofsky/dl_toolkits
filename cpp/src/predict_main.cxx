@@ -29,14 +29,14 @@ void EnumPathFiles(const std::string &path, const std::string &ext,
         if (ent->d_type == DT_REG
                 && std::equal(ext.rbegin(), ext.rend(), fn.rbegin()))
         {
-            fns.push_back(path + fn);
+            fns.push_back(path + '/' + fn);
         }
     }
     ::closedir(dir);
 }
 
 void write_with_trunc(ofstream &ofs, float value) {
-    DEBUG_PRINT();
+    //DEBUG_PRINT();
     if (value < 0) {
        ofs<<0<<"\t";
     } else if (value > 1) {
