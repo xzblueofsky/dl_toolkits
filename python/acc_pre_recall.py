@@ -35,7 +35,7 @@ def get_statics(records, thresh):
     return (accurancy, precision, recall)
 
 def get_result_list(records):
-    threshes = [x *0.001 for x in range(1,1001)]
+    threshes = [x *0.001 for x in range(1,1000)]
     accurancy_list = list()
     precision_list = list()
     recall_list = list()
@@ -59,7 +59,7 @@ if __name__=='__main__':
     
     (accurancy_list, precision_list, recall_list) = get_result_list(records)
     
-    plt.plot(recall_list, precision_list)
+    plt.plot(recall_list, precision_list, linewidth=2.0)
     plt.xlabel('Recall')
     plt.ylabel('Precision')
     plt.plot(recall_list[50], precision_list[50], 'ro')

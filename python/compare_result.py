@@ -36,7 +36,7 @@ if __name__ == '__main__':
         model_name_list.append(model_name)
 
     for i in range(len(model_name_list)):
-       plt.plot(recall_list[i], precesion_list[i], label=model_name_list[i])
+       plt.plot(recall_list[i], precesion_list[i], label=model_name_list[i], linewidth=3.0)
        plt.legend(loc='lower left')
     
     plt.xlabel('Recall')
