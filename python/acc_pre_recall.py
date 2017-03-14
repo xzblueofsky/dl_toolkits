@@ -35,7 +35,7 @@ def get_statics(records, thresh):
     return (accurancy, precision, recall)
 
 def get_result_list(records):
-    threshes = [x *0.01 for x in range(1,101)]
+    threshes = [x *0.001 for x in range(1,1001)]
     accurancy_list = list()
     precision_list = list()
     recall_list = list()

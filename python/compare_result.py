@@ -19,6 +19,8 @@ if __name__ == '__main__':
     model_name_list = list()
 
     for fn in fns:
+        if not fn.endswith('.txt'):
+            continue
         result_path = os.path.join(result_dir, fn)
 
         result = open(result_path)
@@ -35,7 +37,7 @@ if __name__ == '__main__':
 
     for i in range(len(model_name_list)):
        plt.plot(recall_list[i], precesion_list[i], label=model_name_list[i])
-       plt.legend()
+       plt.legend(loc='lower left')
     
     plt.xlabel('Recall')
     plt.ylabel('Precision')
