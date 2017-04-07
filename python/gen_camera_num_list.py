@@ -22,6 +22,7 @@ if __name__=='__main__':
     for fn in fns:
         #print '{}\n'.format(fn) 
         path = os.path.join(image_dir,fn)
+        path = os.path.abspath(path)
         #print '{}\n'.format(path)
         img = cv2.imread(path)
         pos = fn.find('_')
