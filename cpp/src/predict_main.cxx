@@ -91,8 +91,8 @@ int main(int argc, char* argv[]) {
         for (int i=0; i<batch_size; i++) {
             ofs<<batch_img_fns[i]<<"\t";
             for (vector< vector<float> >::size_type j=0; j<batch_preds[i].size(); j++) {
-                write_with_trunc(ofs, batch_preds[i][j]);
-                //ofs<<batch_preds[i][j]<<"\t";
+                //write_with_trunc(ofs, batch_preds[i][j]);
+                ofs<<batch_preds[i][j]<<"\t";
             }
             ofs<<endl;
         }
@@ -112,8 +112,8 @@ int main(int argc, char* argv[]) {
     for (vector<string>::size_type i=0; i<batch_img_fns.size(); i++) {
         ofs<<batch_img_fns[i]<<"\t";
         for (vector< vector<float> >::size_type j=0; j<batch_preds[i].size(); j++) {
-            write_with_trunc(ofs, batch_preds[i][j]);
-            //ofs<<batch_preds[i][j]<<"\t";
+            //write_with_trunc(ofs, batch_preds[i][j]);
+            ofs<<batch_preds[i][j]<<"\t";
         }
         ofs<<endl;
     }
