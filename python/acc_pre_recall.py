@@ -19,7 +19,7 @@ def get_statics(records, thresh):
             false_neg += 1
         elif predict>thresh and groundtruth ==0:
             false_pos += 1
-    
+
     episilon = 1e-6
     accurancy = (true_pos + true_neg) / (true_pos + true_neg + false_pos + false_neg + episilon);
     precision = true_pos / (true_pos + false_pos + episilon)
@@ -29,13 +29,14 @@ def get_statics(records, thresh):
     print 'accurancy = {}'.format(accurancy)
     print 'precision = {}'.format(precision)
     print 'recall = {}'.format(recall)
+    print 'tp={}, tn={}, fp={}, fn={}\n'.format(true_pos, true_neg, false_pos, false_neg)
     sum_num = true_pos + true_neg + false_pos + false_neg
     print 'sum = {}'.format(sum_num)
     #"""
     return (accurancy, precision, recall)
 
 def get_result_list(records):
-    threshes = [x *0.001 for x in range(1,1000)]
+    threshes = [x *0.001 for x in range(0,1000)]
     accurancy_list = list()
     precision_list = list()
     recall_list = list()
