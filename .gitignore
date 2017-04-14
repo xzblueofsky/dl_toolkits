@@ -1,5 +1,6 @@
 temp_result
 cpp/build
+result_data
 *.swp
 *pyc
 *~

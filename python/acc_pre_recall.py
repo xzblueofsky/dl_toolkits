@@ -24,18 +24,18 @@ def get_statics(records, thresh):
     accurancy = (true_pos + true_neg) / (true_pos + true_neg + false_pos + false_neg + episilon);
     precision = true_pos / (true_pos + false_pos + episilon)
     recall = true_pos / (true_pos + false_neg + episilon)
-    #"""
+    """
     print '---thresh = {}'.format(thresh)
     print 'accurancy = {}'.format(accurancy)
     print 'precision = {}'.format(precision)
     print 'recall = {}'.format(recall)
     sum_num = true_pos + true_neg + false_pos + false_neg
     print 'sum = {}'.format(sum_num)
-    #"""
+    """
     return (accurancy, precision, recall)
 
-def get_result_list(records):
-    threshes = [x *0.01 for x in range(1,101)]
+def get_result_list(records,thres=0):
+    threshes = [x *0.01 for x in range(1,100)]
     accurancy_list = list()
     precision_list = list()
     recall_list = list()
@@ -46,7 +46,10 @@ def get_result_list(records):
         precision_list.append(precision)
         recall_list.append(recall)
 
-    return (accurancy_list, precision_list, recall_list)
+    if thres == 1:
+        return (accurancy_list, precision_list, recall_list,threshes)	
+    else:
+        return (accurancy_list, precision_list, recall_list)
 
 if __name__=='__main__':
     if len(sys.argv)!=2:

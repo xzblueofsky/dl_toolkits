@@ -34,11 +34,13 @@ if __name__ == '__main__':
         model_name_list.append(model_name)
 
     for i in range(len(model_name_list)):
-       plt.plot(recall_list[i], precesion_list[i], label=model_name_list[i])
-       plt.legend()
+	print model_name_list[i]
+        plt.plot(recall_list[i], precesion_list[i], label=model_name_list[i])
+        plt.legend()
     
     plt.xlabel('Recall')
     plt.ylabel('Precision')
-    plt.xlim([0,1])
+    # to display the legend
+    plt.xlim([0,1.3])
     plt.ylim([0,1])
     plt.show()
