@@ -37,6 +37,7 @@ def RemoverRePic(dirPath, backupPath):
                     mkdir_p(newPathDir)
                     newPath = os.path.join(newPathDir, os.path.basename(childPath))
                     os.rename(childPath, newPath)
+                    print childPath
                     quantity =+ 1
                 else:
                     picDic[picMd5] = childPath
