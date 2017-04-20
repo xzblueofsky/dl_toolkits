@@ -25,13 +25,13 @@ def get_statics(records, thresh):
     precision = true_pos / (true_pos + false_pos + episilon)
     recall = true_pos / (true_pos + false_neg + episilon)
     #"""
-    print '---thresh = {}'.format(thresh)
-    print 'accurancy = {}'.format(accurancy)
-    print 'precision = {}'.format(precision)
-    print 'recall = {}'.format(recall)
-    print 'tp={}, tn={}, fp={}, fn={}\n'.format(true_pos, true_neg, false_pos, false_neg)
+    print ('---thresh = {}'.format(thresh))
+    print ('accurancy = {}'.format(accurancy))
+    print ('precision = {}'.format(precision))
+    print ('recall = {}'.format(recall))
+    print ('tp={}, tn={}, fp={}, fn={}\n'.format(true_pos, true_neg, false_pos, false_neg))
     sum_num = true_pos + true_neg + false_pos + false_neg
-    print 'sum = {}'.format(sum_num)
+    print ('sum = {}'.format(sum_num))
     #"""
     return (accurancy, precision, recall)
 
@@ -51,7 +51,7 @@ def get_result_list(records):
 
 if __name__=='__main__':
     if len(sys.argv)!=2:
-        print 'Usage: ./acc_pre_recall.py <path/to/result>'
+        print ('Usage: ./acc_pre_recall.py <path/to/result>')
         exit(1)
 
     result_loc = sys.argv[1]

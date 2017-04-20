@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
-        print 'Usage: ./compare_result.py <results_dir>'
+        print ('Usage: ./compare_result.py <results_dir>')
         exit(1)
 
     result_dir = os.path.abspath(sys.argv[1])

@@ -30,14 +30,7 @@ if __name__=='__main__':
         try:
             for item in tag_data['result']:
                 if item['tagtype'] == tag_name:
-                    comment = item['comment']
-                    if len(comment)==0:
-                        continue
-                    try:
-                        float(comment)
-                    except:
-                        continue
-                    record = loc + '\t' + comment
+                    record = loc + '\t' + tag_name
                     records.append(record)
         except:
             continue

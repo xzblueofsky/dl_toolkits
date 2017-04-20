@@ -29,8 +29,8 @@ list(APPEND LINKER_LIBS ${CUDA_CUDART_LIBRARY} ${CUDA_curand_LIBRARY} ${CUDA_CUB
 
 # caffe
 #find_package(Caffe REQUIRED)
-set(Caffe_INCLUDE_DIRS "/home/zhaoxin/workspace/caffe/distribute/include")
-set(Caffe_LIBRARIES "/home/zhaoxin/workspace/caffe/distribute/lib/libcaffe.so")
+set(Caffe_INCLUDE_DIRS "/home/zhaoxin/caffe/distribute/include")
+set(Caffe_LIBRARIES "/home/zhaoxin/caffe/distribute/lib/libcaffe.so")
 include_directories(SYSTEM ${Caffe_INCLUDE_DIRS})
 list(APPEND LINKER_LIBS ${Caffe_LIBRARIES})
 

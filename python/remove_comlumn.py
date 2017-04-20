@@ -5,7 +5,7 @@ import sys
 
 if __name__ == '__main__':
     if len(sys.argv) != 3:
-        print 'Usage: ./.remove_comlumn.py <result_file_folder> <column_number_to_remove>'
+        print ('Usage: ./.remove_comlumn.py <result_file_folder> <column_number_to_remove>')
         exit(1)
 
     root_dir = os.path.abspath(sys.argv[1])
