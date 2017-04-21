@@ -24,7 +24,7 @@ CaffeClassifier::CaffeClassifier(const string& deploy_file,
 	// set GPU mode
 	if (useGPU_) {
 		Caffe::set_mode(Caffe::GPU);
-		Caffe::SetDevice(0);
+		Caffe::SetDevice(1);
 	} else
 		Caffe::set_mode(Caffe::CPU);
 	// Load the network.

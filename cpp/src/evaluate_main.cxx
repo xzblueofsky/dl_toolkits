@@ -93,6 +93,8 @@ int main(int argc, char* argv[]) {
         }
 
     }
+    avg_time /= batch_num*batch_size;
+    printf("avg_time = %f\n", avg_time);
 
     // operation of tail of images
     vector<Mat> batch_inputs;
