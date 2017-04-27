@@ -17,6 +17,8 @@ if __name__=='__main__':
 
     false_pos_paths = list()
     false_neg_paths = list()
+    true_pos_paths = list()
+    true_neg_paths = list()
 
     records = result_file.readlines()
     for record in records:
@@ -28,13 +30,23 @@ if __name__=='__main__':
         if predict>pos_thresh and groundtruth==0:
             false_pos_paths.append(path)
 
+        if predict>pos_thresh and groundtruth==1:
+            true_pos_paths.append(path)
+
         if predict<pos_thresh and groundtruth==1:
             false_neg_paths.append(path)
 
+        if predict<pos_thresh and groundtruth==0:
+            true_neg_paths.append(path)
+
     false_pos_dir = output_dir + '/false_pos' 
     false_neg_dir = output_dir + '/false_neg' 
+    true_pos_dir = output_dir + '/true_pos' 
+    true_neg_dir = output_dir + '/true_neg' 
     os.mkdir(false_pos_dir, 0755)
     os.mkdir(false_neg_dir, 0755)
+    os.mkdir(true_pos_dir, 0755)
+    os.mkdir(true_neg_dir, 0755)
 
     for path in false_pos_paths:
         shutil.copy(path, false_pos_dir)
@@ -42,3 +54,9 @@ if __name__=='__main__':
     for path in false_neg_paths:
         shutil.copy(path, false_neg_dir)
 
+
+    for path in true_pos_paths:
+        shutil.copy(path, true_pos_dir)
+
+    for path in true_neg_paths:
+        shutil.copy(path, true_neg_dir)
